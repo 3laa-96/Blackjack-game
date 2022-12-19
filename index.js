@@ -66,16 +66,10 @@ function renderGame() {
     message = "Bust";
     gameOver = true;
   }
-  messageEl.innerText = message;
 
   cardsEl.textContent = "Cards :";
   for (let i = 0; i < cards.length; i++) {
     cardsEl.textContent += cards[i] + " ";
   }
   sumEl.innerText = "Sum :" + " " + sum;
-}
-
-// test roll dice function
-function rollDice() {
-  return Math.floor(Math.random() * 5 + 1);
 }
