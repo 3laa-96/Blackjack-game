@@ -3,33 +3,39 @@
 let cards = [];
 let sum = 0;
 let message = "";
+let gameOver = false;
 let hasBlackJack = false;
-let isAlive = false;
 let messageEl = document.getElementById("message-el");
 let sumEl = document.getElementById("sum-el");
 let cardsEl = document.getElementById("card-el");
 
 // start game button
 function startGame() {
-  let firstCard = getRandomCard();
-  let secondCard = getRandomCard();
-  cards.push(firstCard, secondCard);
-  sum = cards[0] + cards[1];
-  renderGame();
-  isAlive = true;
+  if (sum === 0) {
+    let firstCard = getRandomCard();
+    let secondCard = getRandomCard();
+    cards.push(firstCard, secondCard);
+    sum = cards[0] + cards[1];
+    renderGame();
+  } else {
+    messageEl.innerText = "The game has already started";
+  }
 }
 
 // New card button
 function newCard() {
   let Card = getRandomCard();
-  if (isAlive === true) {
+  if (gameOver === false) {
     sum += Card;
     cards.push(Card);
     renderGame();
   } else if (hasBlackJack === true) {
     messageEl.innerText = "You already won";
+    gameOver = true;
+  } else if (gameOver === true) {
+    messageEl.innerText = "Game is over";
   } else {
-    messageEl.innerText = "You haven't started teh game yet";
+    messageEl.innerText = "You haven't started the game yet";
   }
 }
 
@@ -53,9 +59,10 @@ function renderGame() {
   } else if (sum === 21) {
     message = "Congrats you got a black jack !";
     hasBlackJack = true;
+    gameOver = true;
   } else {
     message = "Bust";
-    isAlive = false;
+    gameOver = true;
   }
   messageEl.innerText = message;
 
