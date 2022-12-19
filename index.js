@@ -1,5 +1,4 @@
 // Defined Variables
-
 let cards = [];
 let sum = 0;
 let message = "";
@@ -33,7 +32,6 @@ function newCard() {
     renderGame();
   } else if (hasBlackJack === true) {
     messageEl.innerText = "You already won";
-    gameOver = true;
   } else if (gameOver === true) {
     messageEl.innerText = "Game is over";
   } else {
@@ -66,6 +64,7 @@ function renderGame() {
     message = "Bust";
     gameOver = true;
   }
+  messageEl.innerText = message;
 
   cardsEl.textContent = "Cards :";
   for (let i = 0; i < cards.length; i++) {
