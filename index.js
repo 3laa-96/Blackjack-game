@@ -17,15 +17,17 @@ function startGame() {
     cards.push(firstCard, secondCard);
     sum = cards[0] + cards[1];
     renderGame();
-  } else {
+  } else if (gameOver === false) {
     messageEl.innerText = "The game has already started";
+  } else {
+    messageEl.innerText = "Game is over";
   }
 }
 
 // New card button
 function newCard() {
   let Card = getRandomCard();
-  if (gameOver === false) {
+  if (gameOver === false && sum > 0) {
     sum += Card;
     cards.push(Card);
     renderGame();
@@ -76,15 +78,4 @@ function renderGame() {
 // test roll dice function
 function rollDice() {
   return Math.floor(Math.random() * 5 + 1);
-}
-
-// Testing logical operations
-
-let colorIsBlack = true;
-let conditionIsNew = false;
-
-if (colorIsBlack === true && conditionIsNew === true) {
-  console.log("true");
-} else {
-  console.log("false");
 }
